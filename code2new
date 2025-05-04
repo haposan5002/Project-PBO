@@ -1,0 +1,59 @@
+import javax.swing.*;
+import java.awt.*;
+
+public class LayoutDemo {
+
+    public static void main(String[] args) {
+        // Membuat frame
+        JFrame frame = new JFrame("Layout Demo");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(600, 400); // Ukuran frame sesuai kebutuhan
+
+        // Container utama
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new BorderLayout());
+
+        // Panel untuk judul
+        JPanel titlePanel = new JPanel();
+        titlePanel.setBackground(Color.WHITE);
+        JLabel titleLabel = new JLabel("Navigasi");
+        titlePanel.add(titleLabel);
+        mainPanel.add(titlePanel, BorderLayout.NORTH);
+
+        // Panel untuk navigasi
+        JPanel navPanel = new JPanel();
+        navPanel.setLayout(new BoxLayout(navPanel, BoxLayout.Y_AXIS));
+        navPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        
+        // Membuat tombol navigasi
+        for (int i = 0; i < 5; i++) {
+            JButton navButton = new JButton("Menu " + (i + 1));
+            navButton.setPreferredSize(new Dimension(100, 30)); // Ukuran tombol
+            navButton.setBackground(Color.GRAY);
+            navButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+            navPanel.add(navButton);
+        }
+
+        // Panel untuk konten
+        JPanel contentPanel = new JPanel();
+        contentPanel.setLayout(new GridLayout(10, 1)); // Mengatur layout grid untuk konten
+
+        // Menambahkan bidang konten
+        for (int i = 0; i < 10; i++) {
+            contentPanel.add(new JLabel("Konten " + (i + 1)));
+        }
+
+        // Menambahkan panel navigasi dan konten ke panel utama
+        mainPanel.add(navPanel, BorderLayout.WEST);
+        mainPanel.add(contentPanel, BorderLayout.CENTER);
+
+        // Menambahkan garis pemisah
+        JSeparator separator = new JSeparator();
+        separator.setPreferredSize(new Dimension(600, 5));
+        mainPanel.add(separator, BorderLayout.SOUTH);
+
+        // Menambahkan panel utama ke frame
+        frame.add(mainPanel);
+        frame.setVisible(true);
+    }
+}
