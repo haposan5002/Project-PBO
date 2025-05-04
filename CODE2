@@ -1,5 +1,5 @@
-import java.awt.*;
 import javax.swing.*;
+import java.awt.*;
 
 public class SimpleUI {
 
@@ -7,7 +7,7 @@ public class SimpleUI {
         // Membuat frame utama
         JFrame frame = new JFrame("Simple UI");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(400, 600); // Ukuran frame
+        frame.setSize(500, 600); // Ukuran frame sesuai dengan gambar
 
         // Mengatur layout untuk frame utama
         frame.setLayout(new BorderLayout());
@@ -24,28 +24,36 @@ public class SimpleUI {
         // Menambahkan panel atas ke frame
         frame.add(topPanel, BorderLayout.NORTH);
 
-        // Panel tengah untuk item navigasi
-        JPanel centerPanel = new JPanel();
-        centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS)); // Layout vertikal
+        // Panel kiri untuk tombol (menu navigasi)
+        JPanel leftPanel = new JPanel();
+        leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS)); // Layout vertikal
+        leftPanel.setPreferredSize(new Dimension(100, 0)); // Ukuran panel kiri
 
-        // Menambahkan item navigasi (item 1, item 2, item 3)
-        for (int i = 1; i <= 3; i++) {
-            JButton itemButton = new JButton("Item " + i);
-            itemButton.setBackground(Color.LIGHT_GRAY);
-            itemButton.setMaximumSize(new Dimension(Integer.MAX_VALUE, itemButton.getPreferredSize().height));
-            centerPanel.add(itemButton);
+        // Menambahkan tombol ke panel kiri
+        for (int i = 1; i <= 5; i++) {
+            JButton button = new JButton("Item " + i);
+            button.setBackground(Color.LIGHT_GRAY);
+            button.setMaximumSize(new Dimension(Integer.MAX_VALUE, button.getPreferredSize().height));
+            leftPanel.add(button);
         }
 
-        // Menambahkan panel tengah ke frame
-        frame.add(centerPanel, BorderLayout.CENTER);
+        // Panel kanan untuk area teks
+        JPanel rightPanel = new JPanel();
+        rightPanel.setLayout(new BorderLayout());
+        JTextArea textArea = new JTextArea(20, 30); // Area teks
+        textArea.setEditable(false); // Tidak bisa diedit
+        JScrollPane scrollPane = new JScrollPane(textArea); // Scroll untuk area teks
+        rightPanel.add(scrollPane, BorderLayout.CENTER);
 
-        // Panel bawah untuk konten utama
+        // Menambahkan panel kiri dan kanan ke frame
+        frame.add(leftPanel, BorderLayout.WEST);
+        frame.add(rightPanel, BorderLayout.CENTER);
+
+        // Panel bawah untuk footer
         JPanel bottomPanel = new JPanel();
-        bottomPanel.setLayout(new BorderLayout());
-
-        // Label untuk konten utama
-        JLabel contentLabel = new JLabel("Konten utama di sini", SwingConstants.CENTER);
-        bottomPanel.add(contentLabel, BorderLayout.CENTER);
+        bottomPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+        JLabel footerLabel = new JLabel("Konten utama di sini");
+        bottomPanel.add(footerLabel);
 
         // Menambahkan panel bawah ke frame
         frame.add(bottomPanel, BorderLayout.SOUTH);
@@ -54,3 +62,4 @@ public class SimpleUI {
         frame.setVisible(true);
     }
 }
+
