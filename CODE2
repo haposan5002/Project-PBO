@@ -1,0 +1,56 @@
+import java.awt.*;
+import javax.swing.*;
+
+public class SimpleUI {
+
+    public static void main(String[] args) {
+        // Membuat frame utama
+        JFrame frame = new JFrame("Simple UI");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(400, 600); // Ukuran frame
+
+        // Mengatur layout untuk frame utama
+        frame.setLayout(new BorderLayout());
+
+        // Panel atas untuk navigasi
+        JPanel topPanel = new JPanel();
+        topPanel.setLayout(new BorderLayout());
+
+        // Label untuk navigasi
+        JLabel navigationLabel = new JLabel("Navigasi", SwingConstants.CENTER);
+        navigationLabel.setFont(new Font("Arial", Font.BOLD, 16));
+        topPanel.add(navigationLabel, BorderLayout.CENTER);
+
+        // Menambahkan panel atas ke frame
+        frame.add(topPanel, BorderLayout.NORTH);
+
+        // Panel tengah untuk item navigasi
+        JPanel centerPanel = new JPanel();
+        centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS)); // Layout vertikal
+
+        // Menambahkan item navigasi (item 1, item 2, item 3)
+        for (int i = 1; i <= 3; i++) {
+            JButton itemButton = new JButton("Item " + i);
+            itemButton.setBackground(Color.LIGHT_GRAY);
+            itemButton.setMaximumSize(new Dimension(Integer.MAX_VALUE, itemButton.getPreferredSize().height));
+            centerPanel.add(itemButton);
+        }
+
+        // Menambahkan panel tengah ke frame
+        frame.add(centerPanel, BorderLayout.CENTER);
+
+        // Panel bawah untuk konten utama
+        JPanel bottomPanel = new JPanel();
+        bottomPanel.setLayout(new BorderLayout());
+
+        // Label untuk konten utama
+        JLabel contentLabel = new JLabel("Konten utama di sini", SwingConstants.CENTER);
+        bottomPanel.add(contentLabel, BorderLayout.CENTER);
+
+        // Menambahkan panel bawah ke frame
+        frame.add(bottomPanel, BorderLayout.SOUTH);
+
+        // Menampilkan frame
+        frame.setVisible(true);
+    }
+}
