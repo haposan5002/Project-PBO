@@ -1,0 +1,74 @@
+import javax.swing.*;
+import java.awt.*;
+
+public class SimpleUI {
+
+    public static void main(String[] args) {
+        // Membuat frame utama
+        JFrame frame = new JFrame("Simple UI");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(400, 600); // Ukuran frame
+
+        // Mengatur layout untuk frame utama
+        frame.setLayout(new BorderLayout());
+
+        // Panel atas untuk logo dan menu
+        JPanel topPanel = new JPanel();
+        topPanel.setLayout(new BorderLayout());
+
+        // Logo di kiri atas
+        JLabel logoLabel = new JLabel("Logo", SwingConstants.CENTER);
+        logoLabel.setOpaque(true);
+        logoLabel.setBackground(Color.GRAY);
+        topPanel.add(logoLabel, BorderLayout.WEST);
+
+        // Menu di kanan atas
+        JLabel menuLabel = new JLabel("Menu", SwingConstants.CENTER);
+        menuLabel.setOpaque(true);
+        menuLabel.setBackground(Color.GRAY);
+        topPanel.add(menuLabel, BorderLayout.EAST);
+
+        // Menambahkan panel atas ke frame
+        frame.add(topPanel, BorderLayout.NORTH);
+
+        // Panel tengah untuk navigasi dan item
+        JPanel centerPanel = new JPanel();
+        centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS)); // Layout vertikal
+
+        // Label untuk navigasi
+        JLabel navigationLabel = new JLabel("Navigasi", SwingConstants.CENTER);
+        navigationLabel.setFont(new Font("Arial", Font.BOLD, 16));
+        centerPanel.add(navigationLabel);
+
+        // Menambahkan item (Item 1 hingga Item 10) dengan tombol
+        for (int i = 1; i <= 10; i++) {
+            JButton itemButton = new JButton("Item " + i);
+            itemButton.setBackground(Color.LIGHT_GRAY);
+            itemButton.setMaximumSize(new Dimension(Integer.MAX_VALUE, itemButton.getPreferredSize().height));
+            centerPanel.add(itemButton);
+        }
+
+        // Menambahkan panel tengah ke frame
+        frame.add(centerPanel, BorderLayout.CENTER);
+
+        // Panel bawah untuk Tombol 1 dan Tombol 2
+        JPanel bottomPanel = new JPanel();
+        bottomPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+
+        // Tombol 1
+        JButton button1 = new JButton("Tombol 1");
+        button1.setBackground(Color.GRAY);
+        bottomPanel.add(button1);
+
+        // Tombol 2
+        JButton button2 = new JButton("Tombol 2");
+        button2.setBackground(Color.GRAY);
+        bottomPanel.add(button2);
+
+        // Menambahkan panel bawah ke frame
+        frame.add(bottomPanel, BorderLayout.SOUTH);
+
+        // Menampilkan frame
+        frame.setVisible(true);
+    }
+}
