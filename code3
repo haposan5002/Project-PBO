@@ -1,0 +1,58 @@
+import javax.swing.*;
+import java.awt.*;
+
+public class LayoutExample {
+    public static void main(String[] args) {
+        // Membuat JFrame
+        JFrame frame = new JFrame("Contoh Layout");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(800, 600); // Ukuran frame
+
+        // Membuat Container utama
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new BorderLayout());
+
+        // Panel untuk Logo
+        JPanel logoPanel = new JPanel();
+        logoPanel.setPreferredSize(new Dimension(400, 100)); // Ukuran Logo
+        logoPanel.setBackground(Color.GRAY);
+        logoPanel.add(new JLabel("Logo"));
+
+        // Panel untuk Navigasi
+        JPanel navPanel = new JPanel();
+        navPanel.setPreferredSize(new Dimension(200, 400)); // Ukuran Navigasi
+        navPanel.setBackground(Color.LIGHT_GRAY);
+        navPanel.add(new JLabel("Navigasi"));
+
+        // Panel untuk konten utama
+        JPanel contentPanel = new JPanel();
+        contentPanel.setLayout(new GridLayout(0, 2)); // 2 kolom untuk konten
+        contentPanel.setBackground(Color.WHITE);
+
+        // Menambahkan komponen ke contentPanel
+        for (int i = 0; i < 6; i++) {
+            contentPanel.add(new JTextField("Input " + (i + 1)));
+        }
+        JPanel smallBox = new JPanel();
+        smallBox.setPreferredSize(new Dimension(200, 150)); // Ukuran kotak kecil
+        smallBox.setBackground(Color.GRAY);
+        contentPanel.add(smallBox);
+
+        // Menyusun panel
+        mainPanel.add(logoPanel, BorderLayout.NORTH);
+        mainPanel.add(navPanel, BorderLayout.WEST);
+        mainPanel.add(contentPanel, BorderLayout.CENTER);
+
+        // Menambahkan garis di bagian bawah
+        JPanel bottomPanel = new JPanel();
+        bottomPanel.setPreferredSize(new Dimension(800, 5));
+        bottomPanel.setBackground(Color.BLACK);
+
+        // Menambahkan elemen ke frame
+        frame.add(mainPanel, BorderLayout.CENTER);
+        frame.add(bottomPanel, BorderLayout.SOUTH);
+
+        // Menampilkan frame
+        frame.setVisible(true);
+    }
+}
